@@ -245,6 +245,5 @@ if __name__ == "__main__":
     test_image = "./Train/images/H0001.jpg"  # 替换为实际路径
     result_mask = predict(test_image)
 
-    # 保存结果
     cv2.imwrite("predicted_mask.png", result_mask)
     print("Prediction saved to predicted_mask.png")
