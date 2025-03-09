@@ -13,7 +13,7 @@ from tqdm import tqdm  # 新增进度条库
 DATA_DIR = "./Train"  # 包含images和masks子目录的路径
 TARGET_SIZE = 512     # 目标尺寸
 BATCH_SIZE = 4
-EPOCHS = 30
+EPOCHS = 10
 LR = 1e-4
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
@@ -143,8 +143,8 @@ def train():
     mask_dir = os.path.join(DATA_DIR, "masks")
 
     # 获取排序后的文件列表
-    image_files = sorted(glob(os.path.join(image_dir, "*.jpg")))  # 修改为 jpg
-    mask_files = sorted(glob(os.path.join(mask_dir, "*.bmp")))    # 修改为 bmp
+    image_files = sorted(glob(os.path.join(image_dir, "*.jpg")))  
+    mask_files = sorted(glob(os.path.join(mask_dir, "*.bmp")))  
 
     # 检查图像和掩膜数量是否匹配
     if len(image_files) != len(mask_files):
@@ -238,12 +238,10 @@ def predict(image_path, model_path="best_model.pth"):
     return final_mask
 
 
-# ==================== 主程序 ====================
 if __name__ == "__main__":
-    # 训练模型
+
     train()
 
-    # 示例预测
     test_image = "./Train/images/H0001.jpg"  # 替换为实际路径
     result_mask = predict(test_image)
 
